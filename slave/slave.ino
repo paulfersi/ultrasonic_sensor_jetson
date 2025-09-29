@@ -23,7 +23,7 @@ void loop()
 
     long duration = pulseIn(echoPin, HIGH);
     distanceCm = duration * 0.034 / 2;
-    Serial.println(duration);
+    Serial.println(distanceCm);
 
     delay(100);
 }
