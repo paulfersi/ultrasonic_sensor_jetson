@@ -6,6 +6,7 @@ float distanceCm = 0.0;
 
 void setup()
 {
+    Serial.begin(9600);
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     Wire.begin(0x08); // the I2c address on which it should respond
@@ -22,6 +23,7 @@ void loop()
 
     long duration = pulseIn(echoPin, HIGH);
     distanceCm = duration * 0.034 / 2;
+    Serial.println(duration);
 
     delay(100);
 }
