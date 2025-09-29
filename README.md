@@ -1,5 +1,17 @@
 ### Setup
 
+##### Pinout
+
+Jetson  | Arduino | HC-SR04
+GND     | GND
+28      | A5
+27      | A4
+        | 5V      | 5V 
+        | GND     | GND
+        | D2      | Echo
+        | D3      | Trig  
+
+
 ##### Check I2C bus
 
 ```i2cdetect -y -r 0```
