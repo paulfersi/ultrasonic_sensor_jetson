@@ -4,12 +4,11 @@ from std_msgs.msg import Float64
 import smbus
 import time
 
-I2C_ADDR = 0x08
-bus = smbus.SMBus(0)
-
 class RangeSensorPublisherNode(Node):
 
     def __init__(self):
+        self.I2C_ADDR = 0x08
+        self.bus = smbus.SMBus(0)
         super().__init__('range_sensor_publisher_node')
         self.publisher_ = self.create_publisher(Float64, 'range_sensor_distance_cm',10)
         timer_period = 0.3
@@ -29,7 +28,7 @@ class RangeSensorPublisherNode(Node):
     
     def read_distance(self):
         try:
-            data = bus.read_i2c_block_data(I2C_ADDR, 0, 2)
+            data = self.bus.read_i2c_block_data(self.I2C_ADDR, 0, 2)
             distance_mm = (data[0] << 8) | data[1]
             distance_cm = distance_mm /10.0
             return distance_cm
@@ -46,7 +45,7 @@ class RangeSensorPublisherNode(Node):
         rclpy.shutdown()
 
 
-    if __name__ == '__main__':
-        main()
+if __name__ == '__main__':
+    main()
 
-    
+
